@@ -3,5 +3,7 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Project.create(name: 'Ironhack', description: 'A bootcamp...').entries.create(hours: 1, minutes: 34, date: Date.today)
+Project.create(name: 'Rails', description: 'A framework to ...').entries.create(hours: 2, minutes: 50, date: Date.today)
+Project.create(name: 'Ruby', description: 'A language for ...').entries.create(hours: 3, minutes: 55, date: Date.today)
+

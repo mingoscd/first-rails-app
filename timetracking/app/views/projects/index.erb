@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project</title>
+</head>
+<body>
+	<% if @list %>
+		<ul>
+			<% @list.each do |item| %>
+				<li>
+					<%= item.name %>
+					<% if  !item.description.empty? %>
+						- <%= item.description %> 
+					<% end %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+</body>
+</html>
