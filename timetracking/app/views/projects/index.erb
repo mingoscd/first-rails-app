@@ -7,15 +7,18 @@
 <body>
 	<% if @list %>
 		<ul>
-			<% @list.each do |item| %>
+			<% @list.each do |project| %>
 				<li>
-					<%= item.name %>
-					<% if  !item.description.empty? %>
-						- <%= item.description %> 
+					<%= link_to(project.name, project_entries_path(project)) %>
+					<% if  !project.description.empty? %>
+						- <%= project.description %> 
 					<% end %>
+					<%= link_to('Edit Project', edit_project_path(project.id)) %>
+					<%= link_to('Delete Project', project_path(project.id), method: :delete, data: { confirm: 'Are you sure?'}) %>
 				</li>
 			<% end %>
 		</ul>
 	<% end %>
+	<%= link_to('Create new', new_project_path) %>
 </body>
 </html>

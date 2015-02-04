@@ -3,3 +3,6 @@
 		- <%= @project.description %> 
 	<% end %>
 	<h2>Total hours worked at this project in this month: <%= @worked %></h2>
+
+	<%= link_to('View entries', project_entries_path(@project.id)) %>
+	<a href='/projects/<%= @project.id %>/entries'></a>

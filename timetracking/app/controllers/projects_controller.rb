@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
 	def index
 		@list = Project.last_created_projects(10)
-		@worked = Project.total_hours_in_month
 		if @list.empty?
 			render 'no_projects', layout: 'no_projects'
 		end
@@ -13,5 +12,40 @@ class ProjectsController < ApplicationController
 		rescue ActiveRecord::RecordNotFound
 			render 'no_projects_found'
 		end
+	end
+	def new
+		@project = Project.new
+	end
+	def create
+		@project = Project.new project_params
+		if @project.save
+			redirect_to action: 'index', controller: 'projects'
+		else
+			render 'new'
+		end
+	end
+
+	def edit
+		@project = Project.find params[:id]
+	end
+
+	def update
+		@project = Project.find params[:id]
+		if @project.update_attributes project_params
+			redirect_to action: 'index', controller: 'projects'
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		Project.find(params[:id]).destroy
+		redirect_to action: 'index', controller: 'projects'
+	end
+
+	private
+
+	def project_params
+		params.require(:project).permit(:name, :description)
 	end
 end

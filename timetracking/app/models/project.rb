@@ -1,5 +1,9 @@
 class Project < ActiveRecord::Base
 	has_many :entries
+
+	validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
+	validates :description, presence: true, length: { maximum: 50 }
+
 	def self.iron_find id 
 		where("id = ?",id)
 	end

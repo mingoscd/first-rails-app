@@ -5,6 +5,9 @@
 			<%= entry.hours %> h 
 			<%= entry.minutes %> m -
 			<%= entry.date.strftime('%D') %> 
+			<%= link_to('Edit entry', edit_project_entry_path(@project.id, entry.id)) %>
+			<%= link_to('Delete', project_entry_path(@project.id, entry.id), method: :delete, data: { confirm: 'Are you sure?' } ) %>
 		</li>
 	<% end %>
 </ul>
+<%= link_to('New entry', new_project_entry_path(@project.id)) %>
