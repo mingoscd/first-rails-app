@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Project</title>
+</head>
+<body>
+	<% if @people %>
+		<ul>
+			<% @people.each do |person| %>
+				<li>
+					<%= link_to(person.name, person_path(person.id)) %>
+				
+					<%= link_to('Edit profile', edit_person_path(person.id)) %>
+					<%= link_to('Delete person', person_path(person.id), method: :delete, data: { confirm: 'Are you sure?'}) %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	<%= link_to('Create new', new_person_path) %>
+</body>
+</html>

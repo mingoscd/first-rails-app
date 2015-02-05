@@ -39,13 +39,15 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
-		Project.find(params[:id]).destroy
+		@project = Project.find(params[:id])
+		@project.entries.destroy_all
+		@project.destroy
 		redirect_to action: 'index', controller: 'projects'
 	end
 
 	private
 
 	def project_params
-		params.require(:project).permit(:name, :description)
+		params.require(:project).permit(:name, :description, :logo)
 	end
 end

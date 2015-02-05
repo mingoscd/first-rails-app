@@ -9,6 +9,7 @@
 		<ul>
 			<% @list.each do |project| %>
 				<li>
+					<%= image_tag project.logo.url(:thumb) %>
 					<%= link_to(project.name, project_entries_path(project)) %>
 					<% if  !project.description.empty? %>
 						- <%= project.description %> 

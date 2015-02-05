@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203093035) do
+ActiveRecord::Schema.define(version: 20150205141427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,40 @@ ActiveRecord::Schema.define(version: 20150203093035) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "links", force: :cascade do |t|
+    t.text     "url"
+    t.string   "url_short"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "visites"
+  end
+
+  create_table "participations", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "participations", ["person_id", "project_id"], name: "index_participations_on_person_id_and_project_id", unique: true, using: :btree
+  add_index "participations", ["person_id"], name: "index_participations_on_person_id", using: :btree
+  add_index "participations", ["project_id"], name: "index_participations_on_project_id", using: :btree
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.text     "description"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
 end

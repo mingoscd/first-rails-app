@@ -1,0 +1,10 @@
+<%= @person.name %>
+<br>
+<h2>Projects</h2>
+<ul>
+	<% @person.projects.each do |project| %>
+		<li><%= project.name %></li>
+	<% end %>
+</ul>
+<br>
+<%= link_to('People index', people_path) %>
